@@ -69,7 +69,7 @@ for img_name in os.listdir(os.path.join(".", input_dir)):
 
     # apply nms
     bboxes, class_ids, scores = util.NMS(bboxes, class_ids, scores)
-
+    print(bboxes)
     # plot
     reader = easyocr.Reader(['en'])
 
@@ -103,6 +103,6 @@ for img_name in os.listdir(os.path.join(".", input_dir)):
     plt.savefig(os.path.join(".", output_dir, img_name.split(".")[0]) + "_detected" + ".jpg")
 
     plt.figure()
-    # plt.imshow(cv2.cvtColor(license_plate, cv2.COLOR_BGR2RGB))
+    plt.imshow(cv2.cvtColor(license_plate, cv2.COLOR_BGR2RGB))
     plt.savefig(os.path.join(".", output_dir, "cropped_images", img_name.split(".")[0]) + "_detected_plate" + ".jpg")
     plt.show()
