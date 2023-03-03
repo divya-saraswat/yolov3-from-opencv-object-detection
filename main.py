@@ -83,12 +83,13 @@ for img_name in os.listdir(os.path.join(".", input_dir)):
         #             7,
         #             (0, 255, 0),
         #             15)
-        license_plate = img[int(yc - (h / 2)):int(yc + (h / 2)), int(xc - (w / 2)):int(xc + (w / 2)), :]
+        print(int(yc - (h/2)))
+        license_plate = img[int((yc - (h / 2)) - 0.015 * (yc - (h / 2))):int((yc + (h / 2)) + 0.015 * (yc + (h / 2))), int((xc - (w / 2)) - 0.015 * (xc - (w / 2))):int((xc + (w / 2)) + 0.015 * (xc + (w / 2))), :]
         img = cv2.rectangle(img,
-                            (int(xc - (w / 2)), int(yc - (h / 2))),
-                            (int(xc + (w / 2)), int(yc + (h / 2))),
+                            (int((xc - (w / 2)) - 0.015 * (xc - (w / 2))), int((yc - (h / 2)) - 0.015 * (yc - (h / 2)))),
+                            (int((xc + (w / 2)) + 0.015 * (xc + (w / 2))), int((yc + (h / 2)) + 0.015 * (yc + (h / 2)))),
                             (0, 255, 0),
-                            10)
+                            1)
         license_plate_gray = cv2.cvtColor(license_plate, cv2.COLOR_BGR2GRAY)
         _, license_plate_threshold = cv2.threshold(license_plate_gray, 64, 255, cv2.THRESH_BINARY_INV)
         output = reader.readtext(license_plate_threshold)
